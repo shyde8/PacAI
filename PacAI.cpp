@@ -366,8 +366,9 @@ int main(void)
      
         // Artificial Intelligence
         //----------------------------------------------------------------------------------
-        blinky.targetTileX = player.currentTileX;
-        blinky.targetTileY = player.currentTileY;
+        blinky.targetTileX = 26; //player.currentTileX;
+        blinky.targetTileY = 0; //player.currentTileY;
+        Vector2 targetPosition = CalculatePositionBasedOnTile(blinky.targetTileY, blinky.targetTileX, cellSize);
         
         if (blinky.pendingDirection == none) {            
             
@@ -379,8 +380,8 @@ int main(void)
                 
                 if (directions[i] == left) {
                     if (grid[blinky.nextTileY][blinky.nextTileX - 1] == 1) {                        
-                        //float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY, blinky.nextTileX - 1, cellSize), Vector2{blinky.targetTileX, blinky.targetTileY});
-                        float dist = abs(blinky.nextTileY - blinky.targetTileY) + abs(blinky.nextTileX - 1 - blinky.targetTileX);
+                        float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY, blinky.nextTileX - 1, cellSize), targetPosition);
+                        //float dist = abs(blinky.nextTileY - blinky.targetTileY) + abs(blinky.nextTileX - 1 - blinky.targetTileX);
                         if (dist < minDistance) {
                             minDistance = dist;
                             blinky.pendingDirection = left;
@@ -392,8 +393,8 @@ int main(void)
                 }
                 else if (directions[i] == right) {
                     if (grid[blinky.nextTileY][blinky.nextTileX + 1] == 1) {
-                        //float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY, blinky.nextTileX + 1, cellSize), Vector2{blinky.targetTileX, blinky.targetTileY});
-                        float dist = abs(blinky.nextTileY - blinky.targetTileY) + abs(blinky.nextTileX + 1 - blinky.targetTileX);
+                        float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY, blinky.nextTileX + 1, cellSize), targetPosition);
+                        //float dist = abs(blinky.nextTileY - blinky.targetTileY) + abs(blinky.nextTileX + 1 - blinky.targetTileX);
                         if (dist < minDistance) {
                             minDistance = dist;
                             blinky.pendingDirection = right;
@@ -405,8 +406,8 @@ int main(void)
                 }
                 else if (directions[i] == up) {
                     if (grid[blinky.nextTileY - 1][blinky.nextTileX] == 1) {
-                        //float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY - 1, blinky.nextTileX, cellSize), Vector2{blinky.targetTileX, blinky.targetTileY});
-                        float dist = abs(blinky.nextTileY - 1 - blinky.targetTileY) + abs(blinky.nextTileX - blinky.targetTileX);
+                        float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY - 1, blinky.nextTileX, cellSize), targetPosition);
+                        //float dist = abs(blinky.nextTileY - 1 - blinky.targetTileY) + abs(blinky.nextTileX - blinky.targetTileX);
                         if (dist < minDistance) {
                             minDistance = dist;
                             blinky.pendingDirection = up;
@@ -418,8 +419,8 @@ int main(void)
                 }
                 else if (directions[i] == down) {
                     if (grid[blinky.nextTileY + 1][blinky.nextTileX] == 1) {
-                        //float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY + 1, blinky.nextTileX, cellSize), Vector2{blinky.targetTileX, blinky.targetTileY});
-                        float dist = abs(blinky.nextTileY + 1 - blinky.targetTileY) + abs(blinky.nextTileX - blinky.targetTileX);
+                        float dist = Vector2Distance(CalculatePositionBasedOnTile(blinky.nextTileY + 1, blinky.nextTileX, cellSize), targetPosition);
+                        //float dist = abs(blinky.nextTileY + 1 - blinky.targetTileY) + abs(blinky.nextTileX - blinky.targetTileX);
                         if (dist < minDistance) {
                             minDistance = dist;
                             blinky.pendingDirection = down;
